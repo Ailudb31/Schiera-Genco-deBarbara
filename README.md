@@ -1,2 +1,3 @@
-# Juego-3---Cuantos-hay
+# Juego 3
+## Cuantos hay
  
