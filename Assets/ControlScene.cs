@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 
@@ -14,6 +15,7 @@ public class ControlScene : MonoBehaviour
     private int numerodbolas;
     public Text txtPanelRta;
 
+    public Text reiniciarTexto;
 
     // Start is called before the first frame update
     void Start()
@@ -33,27 +35,33 @@ public class ControlScene : MonoBehaviour
     {
         if (inputNumero.text == "")
         {
-            // mostrar en panel “Debes ingresar un resultado” 
+            reiniciarTexto.text = "Volver a intentarlo";
             txtPanelRta.text = "Debes ingresar un resultado";
-
-
         }
 
         else if (int.Parse(inputNumero.text) == (numerodbolas + 1))
         {
+            reiniciarTexto.text = "Reiniciar el desafio";
             txtPanelRta.text = "Es correcto, felicitaciones!";
-            // mostrar en el panel "Es correcto, felicitaciones!"
+           
         }
         else
         {
-            // mostrar en el panel "Es incorrecto."
+            reiniciarTexto.text = "Volver a intentarlo";
             txtPanelRta.text = "Es incorrecto.";
         }
              
     }
-    
-    
-        
+
+    public void ReiniciarJuego()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SeleccionarJuego()
+    {
+        SceneManager.LoadScene("SeleccionarJuegos");
+    }
 
 }
  
