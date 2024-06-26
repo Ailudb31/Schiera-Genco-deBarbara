@@ -14,10 +14,8 @@ public class ControlScene : MonoBehaviour
     public Spawnerbolas_segundo spawnerBolasScript;
     private int numerodbolas;
     public Text txtPanelRta;
-
     public Text reiniciarTexto;
 
-    // Start is called before the first frame update
     void Start()
     {
         numerodbolas = Random.Range(0, 6);

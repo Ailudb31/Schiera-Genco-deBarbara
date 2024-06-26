@@ -17,16 +17,9 @@ public class Spawnerbolas_segundo : MonoBehaviour
         if (autoGenerate)
         {
             Invoke(nameof(CloneBola), freq);
-        }
-
-
+        } 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void CloneBola()
     {
         bolaprefab.SetActive(true);
@@ -35,5 +28,4 @@ public class Spawnerbolas_segundo : MonoBehaviour
         Instantiate(bolaprefab, newPosition, Quaternion.identity);
         
     }
-
 }
