@@ -20,7 +20,7 @@ public class ControlScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numerodbolas = Random.Range(0, 5);
+        numerodbolas = Random.Range(0, 6);
         bola.SetActive(false);
         for (int i = 0; i < numerodbolas; i++)
         {
