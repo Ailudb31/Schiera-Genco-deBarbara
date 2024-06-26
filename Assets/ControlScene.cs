@@ -18,14 +18,14 @@ public class ControlScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numerodbolas = Random.Range(1, 5);
+        numerodbolas = Random.Range(0, 5);
         bola.SetActive(false);
         for (int i = 0; i < numerodbolas; i++)
         {
             spawnerBolasScript.CloneBola();
 
         }
-        Debug.Log(numerodbolas);
+        Debug.Log(numerodbolas + 1);
 
     }
 
@@ -39,7 +39,7 @@ public class ControlScene : MonoBehaviour
 
         }
 
-        else if (int.Parse(inputNumero.text) == numerodbolas)
+        else if (int.Parse(inputNumero.text) == (numerodbolas + 1))
         {
             txtPanelRta.text = "Es correcto, felicitaciones!";
             // mostrar en el panel "Es correcto, felicitaciones!"
