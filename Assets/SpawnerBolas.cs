@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class SpawnerBolas : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject bola;
+    
+    public void CloneObjeto()
     {
-        
+        Instantiate(bola);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
+    
 }
