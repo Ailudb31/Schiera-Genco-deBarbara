@@ -17,18 +17,25 @@ public class ControlScene : MonoBehaviour
     public Text txtPanelRta;
     public Text reiniciarTexto;
     private int oportunidades = 3;
+    public GameObject panelRespuesta;
 
     void Start()
     {
+        
         numeroBolas = Random.Range(0, 5);
         numeroBolasInicial = numeroBolas;
         bola.SetActive(false);
-        for (int i = 0; i < numeroBolas; i++)
-        {
-            spawnerBolasScript.CloneBola();
-        }
-        txtPanelRta.text = "";
-        Debug.Log(numeroBolas + 1);
+
+        StartCoroutine(CaidaBolasConEspera());
+
+        //for (int i = 0; i < numeroBolas; i++)
+        //{
+        //    spawnerBolasScript.CloneBola();
+        //}
+        //txtPanelRta.text = "";
+        //Debug.Log(numeroBolas + 1);
+
+        
     }
 
     public void CompararResultados()
@@ -38,6 +45,7 @@ public class ControlScene : MonoBehaviour
             reiniciarTexto.text = "Volver a intentarlo";
             txtPanelRta.text = "Debes ingresar un resultado";
         }
+       
         else if (int.Parse(inputNumero.text) == (numeroBolas + 1))
         {
             reiniciarTexto.text = "Reiniciar el desafio";
@@ -61,15 +69,28 @@ public class ControlScene : MonoBehaviour
 
     public void ReiniciarJuego()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        numeroBolas = numeroBolasInicial;
-        oportunidades = 3;
-        txtPanelRta.text = "";
+        //Destroy TODO LO QUE ESTE TOCANDO EL PANEL 
+        panelRespuesta.SetActive(false);
+        StartCoroutine(CaidaBolasConEspera());
     }
 
     public void SeleccionarJuego()
     {
         SceneManager.LoadScene("SeleccionarJuegos");
     }
+
+    IEnumerator CaidaBolasConEspera()
+    {
+
+        for (int i = 0; i < numeroBolas; i++)
+        {
+            spawnerBolasScript.CloneBola();
+        }
+        txtPanelRta.text = "";
+        Debug.Log(numeroBolas + 1);
+
+        yield return new WaitForSeconds(0.5f);
+    }
+    
 }
  
