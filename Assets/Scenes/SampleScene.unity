@@ -1557,7 +1557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputNumero: {fileID: 1524422255}
-  bola: {fileID: 1408337707}
+  BolaPrefab: {fileID: 1408337707}
   spawnerBolasScript: {fileID: 1113513651}
   txtPanelRta: {fileID: 1250559910}
   reiniciarTexto: {fileID: 1438661306}
@@ -2045,12 +2045,12 @@ PrefabInstance:
     - target: {fileID: 1818707668401552265, guid: 7ac846e154dfe4043bff2a167308e7d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.9
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 1818707668401552265, guid: 7ac846e154dfe4043bff2a167308e7d4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.88
+      value: -10.6
       objectReference: {fileID: 0}
     - target: {fileID: 1818707668401552265, guid: 7ac846e154dfe4043bff2a167308e7d4,
         type: 3}
@@ -2110,7 +2110,12 @@ PrefabInstance:
     - target: {fileID: 2991702776408044270, guid: 7ac846e154dfe4043bff2a167308e7d4,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991702776408044270, guid: 7ac846e154dfe4043bff2a167308e7d4,
+        type: 3}
+      propertyPath: m_TagString
+      value: bola
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ac846e154dfe4043bff2a167308e7d4, type: 3}

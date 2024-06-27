@@ -10,32 +10,28 @@ using UnityEngine.SceneManagement;
 public class ControlScene : MonoBehaviour
 {
     public InputField inputNumero;
-    public GameObject bola;
+    public GameObject BolaPrefab;
     public Spawnerbolas_segundo spawnerBolasScript;
     private int numeroBolas;
     private int numeroBolasInicial;
     public Text txtPanelRta;
     public Text reiniciarTexto;
-    private int oportunidades = 3;
     public GameObject panelRespuesta;
 
     void Start()
     {
-        
-        numeroBolas = Random.Range(0, 5);
-        numeroBolasInicial = numeroBolas;
-        bola.SetActive(false);
+        numeroBolas = Random.Range(0, 6);
+        //numeroBolasInicial = numeroBolas;
+        BolaPrefab.SetActive(false);
 
-        StartCoroutine(CaidaBolasConEspera());
+        for (int i = 0; i < numeroBolas; i++)
+        {
+            spawnerBolasScript.CloneBola();
+        }
+        txtPanelRta.text = "";
+        Debug.Log(numeroBolas + 1);
 
-        //for (int i = 0; i < numeroBolas; i++)
-        //{
-        //    spawnerBolasScript.CloneBola();
-        //}
-        //txtPanelRta.text = "";
-        //Debug.Log(numeroBolas + 1);
-
-        
+        //StartCoroutine(CaidaBolasConEspera());        
     }
 
     public void CompararResultados()
@@ -45,7 +41,6 @@ public class ControlScene : MonoBehaviour
             reiniciarTexto.text = "Volver a intentarlo";
             txtPanelRta.text = "Debes ingresar un resultado";
         }
-       
         else if (int.Parse(inputNumero.text) == (numeroBolas + 1))
         {
             reiniciarTexto.text = "Reiniciar el desafio";
@@ -53,25 +48,22 @@ public class ControlScene : MonoBehaviour
         }
         else
         {
-            oportunidades--;
-            if (oportunidades > 0)
-            {
-                reiniciarTexto.text = "Volver a intentarlo (" + oportunidades + " oportunidades restantes)";
-                txtPanelRta.text = "Es incorrecto. Intenta de nuevo.";
-            }
-            else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                txtPanelRta.text = "Has perdido todas las oportunidades. Reiniciando... (" + numeroBolasInicial + " bolas)";
-            }
+            reiniciarTexto.text = "Volver a intentarlo";
+            txtPanelRta.text = "Es incorrecto. Intenta de nuevo.";
         }
     }
 
     public void ReiniciarJuego()
     {
-        //Destroy TODO LO QUE ESTE TOCANDO EL PANEL 
+        GameObject[] clones = GameObject.FindGameObjectsWithTag(BolaPrefab.name + "(Clone)");
+        foreach (GameObject clone in clones)
+        {
+            Destroy(clone);
+        }
         panelRespuesta.SetActive(false);
-        StartCoroutine(CaidaBolasConEspera());
+        //StartCoroutine(CaidaBolasConEspera());
+        Start();
+
     }
 
     public void SeleccionarJuego()
@@ -79,18 +71,18 @@ public class ControlScene : MonoBehaviour
         SceneManager.LoadScene("SeleccionarJuegos");
     }
 
-    IEnumerator CaidaBolasConEspera()
-    {
-
-        for (int i = 0; i < numeroBolas; i++)
-        {
-            spawnerBolasScript.CloneBola();
-        }
-        txtPanelRta.text = "";
-        Debug.Log(numeroBolas + 1);
-
-        yield return new WaitForSeconds(0.5f);
-    }
-    
+    //IEnumerator CaidaBolasConEspera()
+    //{
+    //    for (int i = 0; i < numeroBolas; i++)
+    //    {
+    //        spawnerBolasScript.CloneBola();
+    //    }
+    //    txtPanelRta.text = "";
+    //    Debug.Log(numeroBolas + 1);
+    //    yield return new WaitForSeconds(1f);
+    //}
+   
+  
 }
- 
+
+
