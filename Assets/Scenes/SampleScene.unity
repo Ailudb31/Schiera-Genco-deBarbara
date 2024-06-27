@@ -2115,7 +2115,7 @@ PrefabInstance:
     - target: {fileID: 2991702776408044270, guid: 7ac846e154dfe4043bff2a167308e7d4,
         type: 3}
       propertyPath: m_TagString
-      value: bola
+      value: BolaClone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ac846e154dfe4043bff2a167308e7d4, type: 3}
