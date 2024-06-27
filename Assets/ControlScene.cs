@@ -67,7 +67,7 @@ public class ControlScene : MonoBehaviour
 
     public void VolverIntentar() 
     { 
-        panelRespuesta.SetActive(false); 
+        panelRespuesta.SetActive(false ); 
     }
 
 
