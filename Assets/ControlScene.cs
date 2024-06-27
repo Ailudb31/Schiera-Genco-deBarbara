@@ -12,21 +12,23 @@ public class ControlScene : MonoBehaviour
     public InputField inputNumero;
     public GameObject bola;
     public Spawnerbolas_segundo spawnerBolasScript;
-    private int numerodbolas;
+    private int numeroBolas;
+    private int numeroBolasInicial;
     public Text txtPanelRta;
     public Text reiniciarTexto;
+    private int oportunidades = 3;
 
     void Start()
     {
-        numerodbolas = Random.Range(0, 6);
+        numeroBolas = Random.Range(0, 5);
+        numeroBolasInicial = numeroBolas;
         bola.SetActive(false);
-        for (int i = 0; i < numerodbolas; i++)
+        for (int i = 0; i < numeroBolas; i++)
         {
             spawnerBolasScript.CloneBola();
-
         }
-        Debug.Log(numerodbolas + 1);
-
+        txtPanelRta.text = "";
+        Debug.Log(numeroBolas + 1);
     }
 
     public void CompararResultados()
@@ -36,30 +38,38 @@ public class ControlScene : MonoBehaviour
             reiniciarTexto.text = "Volver a intentarlo";
             txtPanelRta.text = "Debes ingresar un resultado";
         }
-
-        else if (int.Parse(inputNumero.text) == (numerodbolas + 1))
+        else if (int.Parse(inputNumero.text) == (numeroBolas + 1))
         {
             reiniciarTexto.text = "Reiniciar el desafio";
             txtPanelRta.text = "Es correcto, felicitaciones!";
-           
         }
         else
         {
-            reiniciarTexto.text = "Volver a intentarlo";
-            txtPanelRta.text = "Es incorrecto.";
+            oportunidades--;
+            if (oportunidades > 0)
+            {
+                reiniciarTexto.text = "Volver a intentarlo (" + oportunidades + " oportunidades restantes)";
+                txtPanelRta.text = "Es incorrecto. Intenta de nuevo.";
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                txtPanelRta.text = "Has perdido todas las oportunidades. Reiniciando... (" + numeroBolasInicial + " bolas)";
+            }
         }
-             
     }
 
     public void ReiniciarJuego()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        numeroBolas = numeroBolasInicial;
+        oportunidades = 3;
+        txtPanelRta.text = "";
     }
 
     public void SeleccionarJuego()
     {
         SceneManager.LoadScene("SeleccionarJuegos");
     }
-
 }
  
