@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class ControlScene : MonoBehaviour
 {
+    public GameObject bolaprefab;
+    public Vector3 newPosition;
+    public float minX;
+    public float maxX;
+    public bool autoGenerate;
+    public float freq;
+
     public InputField inputNumero;
     public GameObject BolaPrefab;
     public Spawnerbolas_segundo spawnerBolasScript;
@@ -16,7 +23,18 @@ public class ControlScene : MonoBehaviour
 
     void Start()
     {
-        ReiniciarJuego();
+        numeroBolas = Random.Range(0, 6);
+        BolaPrefab.SetActive(false);
+
+        for (int i = 0; i <= (numeroBolas); i++)
+        {
+            Invoke(nameof(CloneBola), freq);
+            freq++;
+        }
+
+        txtPanelRta.text = "";
+        Debug.Log(numeroBolas + 1);
+        panelRespuesta.SetActive(false);
     }
 
     public void CompararResultados()
@@ -30,7 +48,7 @@ public class ControlScene : MonoBehaviour
         {
             reiniciarTexto.text = "Reiniciar el desafio";
             txtPanelRta.text = "Es correcto, felicitaciones!";
-            StartCoroutine(ReiniciarEscena());
+            //StartCoroutine(ReiniciarEscena());
         }
         else
         {
@@ -39,30 +57,23 @@ public class ControlScene : MonoBehaviour
         }
     }
 
-    IEnumerator ReiniciarEscena()
-    {
-        yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    //IEnumerator ReiniciarEscena()
+    //{
+    //    yield return new WaitForSeconds(0.5f);
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
 
     public void ReiniciarJuego()
     {
-        numeroBolas = Random.Range(0, 6);
-        BolaPrefab.SetActive(false);
 
-        GameObject[] clones = GameObject.FindGameObjectsWithTag("BolaClone");
-        foreach (GameObject clone in clones)
-        {
-            Destroy(clone);
-        }
 
-        for (int i = 0; i < numeroBolas; i++)
-        {
-            spawnerBolasScript.CloneBola();
-        }
-        txtPanelRta.text = "";
-        Debug.Log(numeroBolas + 1);
-        panelRespuesta.SetActive(false);
+        //GameObject[] clones = GameObject.FindGameObjectsWithTag("BolaClone");
+        //foreach (GameObject clone in clones)
+        //{
+        //    Destroy(clone);
+        //}
+
+        Start();
     }
 
     public void VolverIntentar() 
@@ -74,6 +85,14 @@ public class ControlScene : MonoBehaviour
     public void SeleccionarJuego()
     {
         SceneManager.LoadScene("SeleccionarJuegos");
+    }
+
+    public void CloneBola()
+    {
+        bolaprefab.SetActive(true);
+        float randomX = Random.Range(minX, maxX);
+        newPosition = new Vector3(randomX, newPosition.y, newPosition.z);
+        Instantiate(bolaprefab, newPosition, Quaternion.identity);
     }
 }
 

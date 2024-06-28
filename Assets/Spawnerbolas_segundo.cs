@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Spawnerbolas_segundo : MonoBehaviour
 {
 
@@ -13,11 +14,8 @@ public class Spawnerbolas_segundo : MonoBehaviour
     public float freq;
 
     void Start()
-    {
-        if (autoGenerate)
-        {
-            Invoke(nameof(CloneBola), freq);
-        } 
+    {      
+
     }
 
     public void CloneBola()
@@ -25,7 +23,6 @@ public class Spawnerbolas_segundo : MonoBehaviour
         bolaprefab.SetActive(true);
         float randomX = Random.Range(minX, maxX);
         newPosition = new Vector3(randomX, newPosition.y, newPosition.z);
-        Instantiate(bolaprefab, newPosition, Quaternion.identity);
-        
+        Instantiate(bolaprefab, newPosition, Quaternion.identity);     
     }
 }
